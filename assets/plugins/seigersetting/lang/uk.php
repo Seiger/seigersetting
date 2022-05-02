@@ -6,3 +6,4 @@ $_lang['ssettings_phone'] = 'Основний телефон';
 $_lang['ssettings_phone_description'] = 'Введіть номер телефону сайту.';
 $_lang['ssettings_email'] = 'Основна електронна пошта';
 $_lang['ssettings_email_description'] = 'Введіть основну електронну пошту сайту.';
+$_lang['ssettings_copyright'] = 'Розробка';

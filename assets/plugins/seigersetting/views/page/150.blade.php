@@ -49,16 +49,21 @@ if (isset($configPlugin['fields']) && trim($configPlugin['fields'])) {
                             <span>{{$_lang['ssettings_basic_information']}}</span>
                         </h2>
                         <script>tpResources.addTabPage(document.getElementById('basicTab'));</script>
-                        @if(isset($tabs['basic']))
-                            @foreach($tabs['basic'] as $tab)
-                                @include('partials.'.$tab['type'].'Type')
-                            @endforeach
-                        @endif
+                        <div class="container container-body">
+                            @if(isset($tabs['basic']))
+                                @foreach($tabs['basic'] as $tab)
+                                    @include('partials.'.$tab['type'].'Type')
+                                @endforeach
+                            @endif
+                        </div>
                     </div>
                 @endif
             </div>
         </div>
     </form>
+    <div id="copyright">
+        {!!$_lang['ssettings_copyright']!!} <strong><a href="https://seigerit.com/" target="_blank">Seiger IT</a></strong>
+    </div>
 @endsection
 @push('scripts.bot')
     <div id="actions">
@@ -74,4 +79,8 @@ if (isset($configPlugin['fields']) && trim($configPlugin['fields'])) {
             $(selector).submit();
         }
     </script>
+    <style>
+        #copyright{position:fixed;bottom:0;right:0;background-color:#0057b8;color:#ffd700;padding:5px;}
+        #copyright a{color:#ffd700;}
+    </style>
 @endpush
