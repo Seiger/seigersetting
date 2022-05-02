@@ -1,5 +1,22 @@
-<?php global $_lang;
+<?php
 
+use EvolutionCMS\Models\SystemSetting;
+
+if (isset($_POST) && count($_POST)) {
+    foreach ($_POST as $key => $value) {
+        if (str_starts_with($key, 'sit_') && is_scalar($value)) {
+            $setting = SystemSetting::whereSettingName($key)->firstOrCreate();
+            $setting->setting_name = $key;
+            $setting->setting_value = $value;
+            $setting->save();
+            evo()->setConfig($key, $value);
+        }
+    }
+
+    evo()->clearCache('full');
+}
+
+global $_lang;
 if (is_file(MODX_BASE_PATH . 'assets/plugins/seigersetting/lang/' . evo()->getConfig('manager_language', 'uk') . '.php')) {
     require_once MODX_BASE_PATH . 'assets/plugins/seigersetting/lang/' . evo()->getConfig('manager_language', 'uk') . '.php';
 }
@@ -22,24 +39,39 @@ if (isset($configPlugin['fields']) && trim($configPlugin['fields'])) {
 @extends('manager::template.page')
 @section('content')
     <h1><i class="fas fa-cog" data-tooltip="{{$_lang["ssettings_description"]}}"></i> {{$_lang['ssettings_title']}}</h1>
-    <div class="sectionBody">
-        <div class="tab-pane" id="resourcesPane">
-            <script>tpResources = new WebFXTabPane(document.getElementById('resourcesPane'), false);</script>
-
-            @if($configPlugin['showBasicTab'] == 'yes')
-                <div class="tab-page basicTab" id="basicTab">
-                    <h2 class="tab">
-                        <span>{{$_lang['ssettings_basic_information']}}</span>
-                    </h2>
-                    <script>tpResources.addTabPage(document.getElementById('basicTab'));</script>
-                    @if(isset($tabs['basic']))
-                        @foreach($tabs['basic'] as $tab)
-                            @include('partials.'.$tab['type'].'Type')
-                        @endforeach
-                    @endif
-                </div>
-            @endif
-
+    <form name="ssettings" id="ssettings" class="content" method="post" action="index.php?a=150" onsubmit="documentDirty=false;">
+        <div class="sectionBody">
+            <div class="tab-pane" id="resourcesPane">
+                <script>tpResources = new WebFXTabPane(document.getElementById('resourcesPane'), false);</script>
+                @if($configPlugin['showBasicTab'] == 'yes')
+                    <div class="tab-page basicTab" id="basicTab">
+                        <h2 class="tab">
+                            <span>{{$_lang['ssettings_basic_information']}}</span>
+                        </h2>
+                        <script>tpResources.addTabPage(document.getElementById('basicTab'));</script>
+                        @if(isset($tabs['basic']))
+                            @foreach($tabs['basic'] as $tab)
+                                @include('partials.'.$tab['type'].'Type')
+                            @endforeach
+                        @endif
+                    </div>
+                @endif
+            </div>
+        </div>
+    </form>
+@endsection
+@push('scripts.bot')
+    <div id="actions">
+        <div class="btn-group">
+            <a id="Button1" class="btn btn-success" href="javascript:void(0);" onclick="saveForm('#ssettings');">
+                <i class="fa fa-floppy-o"></i>
+                <span>{{$_lang['save']}}</span>
+            </a>
         </div>
     </div>
-@endsection
+    <script>
+        function saveForm(selector) {
+            $(selector).submit();
+        }
+    </script>
+@endpush
