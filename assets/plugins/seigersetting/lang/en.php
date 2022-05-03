@@ -1,5 +1,5 @@
 <?php
-$_lang['ssettings_title'] = 'Settings';
+$_lang['ssettings_title'] = 'Custom settings';
 $_lang['ssettings_description'] = 'Advanced settings for the site.';
 $_lang['ssettings_basic_information'] = 'Basic information';
 $_lang['ssettings_phone'] = 'Primary phone';

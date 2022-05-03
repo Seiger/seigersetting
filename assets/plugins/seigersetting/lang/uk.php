@@ -1,5 +1,5 @@
 <?php
-$_lang['ssettings_title'] = 'Налаштування';
+$_lang['ssettings_title'] = 'Користувацькі налаштування';
 $_lang['ssettings_description'] = 'Розширені налаштування для сайту.';
 $_lang['ssettings_basic_information'] = 'Основна інформація';
 $_lang['ssettings_phone'] = 'Основний телефон';

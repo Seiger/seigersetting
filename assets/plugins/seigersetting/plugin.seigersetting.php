@@ -11,17 +11,17 @@ if ($e->name == 'OnManagerMenuPrerender') {
     }
 
     $menu['ssettings'] = [
-      "ssettings",
-      "main",
-      "<i class=\"fas fa-cog\"></i> <span class=\"menu-item-text\">".$_lang['ssettings_title']."</span>",
-      "index.php?a=150",
-      $_lang['ssettings_title'],
-      "",
-      "",
-      "main",
-      0,
-      60,
-      "",
+        "ssettings",
+        "tools",
+        "<i class=\"fas fa-cog\"></i> <span class=\"menu-item-text\">".$_lang['ssettings_title']."</span>",
+        "index.php?a=150",
+        $_lang['ssettings_title'],
+        "",
+        "",
+        "main",
+        0,
+        6,
+        "",
     ];
     $e->addOutput(serialize(array_merge($e->params['menu'], $menu)));
 }
