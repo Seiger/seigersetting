@@ -10,7 +10,7 @@
  * @package evo
  * @internal    @events OnManagerMenuPrerender,OnManagerPageInit
  * @internal    @modx_category Manager and Admin
- * @internal    @properties &showBasicTab=Show Basic Tab;list;yes,not;yes;yes;Display tab with basic information &fields=Names of the fields;textarea;basic_text_phone,basic_text_email;basic_text_phone,basic_text_email;See information tab
+ * @internal    @properties &showBasicTab=Show Basic Tab;list;yes,not;yes;yes;Display tab with basic information &fields=Names of the fields;textarea;basic_text_phone,basic_text_cities,basic_text_phones,basic_text_skype,basic_text_telegram,basic_text_viber,basic_text_email;See information tab
  * @internal    @installset base
  * @reportissues    https://github.com/evolution-cms/evolution/issues/
  * @documentation   Official docs https://seigerit.com
